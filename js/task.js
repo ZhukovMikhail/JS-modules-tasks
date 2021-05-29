@@ -1165,77 +1165,76 @@
 // Для исходного объекта после вызова метода atTheOldToad.updatePotionName("Stone skin", "Invulnerability potion"), в свойстве potions будет массив 
 // [{ name: "Speed potion", price: 460 }, { name: "Dragon breath", price: 780 }, { name: "Invulnerability potion", price: 520 } ]
 
-const atTheOldToad = {
-  potions: [],
-  // Change code below this line
-  getPotions() {
-    return this.potions;
-  },
-  addPotion(Product) {
+// const atTheOldToad = {
+//   potions: [],
+//   // Change code below this line
+//   getPotions() {
+//     return this.potions;
+//   },
+//   addPotion(Product) {
 
-     for (const potion of this.potions) {
-      // console.log(potion)
-      if (Product.name === potion.name) {
-        // console.log('такой продукт уже есть', Product.name)
-        potion.qty += 1;
-        return
-      }
-    }
-    const newProduct = {...Product, qty: 1,}
-    this.potions.push(newProduct);
-  },
-  removePotion(potionName) {
-    for (let i = 0; i < this.potions.length; i +=1) {
-      const potion = this.potions[i];
-      // console.log(potion)
-      if (potionName === potion.name){
-        // console.log('нашли продукт', potionName)
-        this.potions.splice(i, 1)
-    }
-  }
-  },
+//      for (const potion of this.potions) {
+//       // console.log(potion)
+//       if (Product.name === potion.name) {
+//         // console.log('такой продукт уже есть', Product.name)
+//         potion.qty += 1;
+//         return
+//       }
+//     }
+//     const newProduct = {...Product, qty: 1,}
+//     this.potions.push(newProduct);
+//   },
+//   removePotion(potionName) {
+//     for (let i = 0; i < this.potions.length; i +=1) {
+//       const potion = this.potions[i];
+//       // console.log(potion)
+//       if (potionName === potion.name){
+//         // console.log('нашли продукт', potionName)
+//         this.potions.splice(i, 1)
+//     }
+//   }
+//   },
 
-  updatePotionName(oldName, newName) {
+//   updatePotionName(oldName, newName) {
 
-    for (let i = 0; i < this.potions.length; i += 1) {
+//     for (let i = 0; i < this.potions.length; i += 1) {
 
-      const potion = this.potions[i];
-      if (oldName === potion.name){
-        // console.log('нашли продукт', oldName)
-        potion.name = newName 
-    }
-  }
-  },
-  clearPotion(){
-    this.potions = [];
-  },
-  totalPrice(){
-    let total = 0;
-    const {potions, qty} = this
-    for( const {price, qty} of potions) {
+//       const potion = this.potions[i];
+//       if (oldName === potion.name){
+//         // console.log('нашли продукт', oldName)
+//         potion.name = newName 
+//     }
+//   }
+//   },
+//   clearPotion(){
+//     this.potions = [];
+//   },
+//   totalPrice(){
+//     let total = 0;
+//     const {potions, qty} = this
+//     for( const {price, qty} of potions) {
       
-      total += price * qty
-    }
-    return total
-  },
-  increaseQty(Product){
-  for (const potion of this.potions) {
-    if (Product.name === potion.name) {
-      potion.qty += 1
-      return
-    }
-  }
-  },
-  decreaseQty(Product){
-    for (const potion of this.potions) {
-      if (Product.name === potion.name && potion.qty >= 2) {
-        potion.qty -= 1
-        return
-      }
-    }
-  },
-  // Change code above this line
-};
+//       total += price * qty
+//     }
+//     return total
+//   },
+//   increaseQty(Product){
+//   for (const potion of this.potions) {
+//     if (Product.name === potion.name) {
+//       potion.qty += 1
+//       return
+//     }
+//   }
+//   },
+//   decreaseQty(Product){
+//     for (const potion of this.potions) {
+//       if (Product.name === potion.name && potion.qty >= 2) {
+//         potion.qty -= 1
+//         return
+//       }
+//     }
+//   },
+//  };
 
 // // atTheOldToad.getPotions()
 // console.table(atTheOldToad.potions)
@@ -1251,30 +1250,50 @@ const atTheOldToad = {
 // atTheOldToad.updatePotionName("Stone skin", "Invulnerability potion")
 // console.table(atTheOldToad.potions)
 // // atTheOldToad.clearPotion()
-// // console.log(atTheOldToad.potions)
-atTheOldToad.addPotion({ name: 'Speed potion', price: 460 }),
-atTheOldToad.addPotion({ name: 'Dragon breath', price: 780 }),
-atTheOldToad.addPotion({ name: 'Stone skin', price: 520 }),
-atTheOldToad.addPotion({ name: 'Speed potion', price: 460 }),
-atTheOldToad.addPotion({ name: 'Dragon breath', price: 780 }),
-atTheOldToad.addPotion({ name: 'Stone skin', price: 520 }),
-atTheOldToad.addPotion({ name: 'Speed potion', price: 460 }),
-atTheOldToad.addPotion({ name: 'Dragon breath', price: 780 }),
-atTheOldToad.addPotion({ name: 'Stone skin', price: 520 }),
-atTheOldToad.addPotion({ name: "Invisibility", price: 620 })
-atTheOldToad.addPotion({ name: 'Speed potion', price: 460 })
-atTheOldToad.addPotion({ name: "Invisibility", price: 620 })
-atTheOldToad.addPotion({ name: "Power potion", price: 270 })
-atTheOldToad.addPotion({ name: "Power potion", price: 270 })
-atTheOldToad.addPotion({ name: "Power potion", price: 270 })
-atTheOldToad.addPotion({ name: "Power potion", price: 270 })
-atTheOldToad.increaseQty({ name: 'Stone skin', price: 520 });
-atTheOldToad.decreaseQty({ name: "Power potion", price: 270 })
+// // // console.log(atTheOldToad.potions)
+// atTheOldToad.addPotion({ name: 'Speed potion', price: 460 }),
+// atTheOldToad.addPotion({ name: 'Dragon breath', price: 780 }),
+// atTheOldToad.addPotion({ name: 'Stone skin', price: 520 }),
+// atTheOldToad.addPotion({ name: 'Speed potion', price: 460 }),
+// atTheOldToad.addPotion({ name: 'Dragon breath', price: 780 }),
+// atTheOldToad.addPotion({ name: 'Stone skin', price: 520 }),
+// atTheOldToad.addPotion({ name: 'Speed potion', price: 460 }),
+// atTheOldToad.addPotion({ name: 'Dragon breath', price: 780 }),
+// atTheOldToad.addPotion({ name: 'Stone skin', price: 520 }),
+// atTheOldToad.addPotion({ name: "Invisibility", price: 620 })
+// atTheOldToad.addPotion({ name: 'Speed potion', price: 460 })
+// atTheOldToad.addPotion({ name: "Invisibility", price: 620 })
+// atTheOldToad.addPotion({ name: "Power potion", price: 270 })
+// atTheOldToad.addPotion({ name: "Power potion", price: 270 })
+// atTheOldToad.addPotion({ name: "Power potion", price: 270 })
+// atTheOldToad.addPotion({ name: "Power potion", price: 270 })
+// atTheOldToad.increaseQty({ name: 'Stone skin', price: 520 });
+// atTheOldToad.decreaseQty({ name: "Power potion", price: 270 })
 
-console.table(atTheOldToad.potions)
-console.log('Total price', atTheOldToad.totalPrice())
-
-
+// console.table(atTheOldToad.potions)
+// console.log('Total price', atTheOldToad.totalPrice())
 
 
+//==============================================================================
+//==============================================================================
+// Стрелочные функции 
+const add = (a, b, c) => a * b - c;
+console.log(add(3,3,3));
+
+const fn = (a, b, c) => a + b + c;
+console.log(fn(4,5,6))
+//==============================================================================
+//========================МОДУЛЬ 4 Задача 1/10=====================================
+
+// function makePizza() {
+//   return 'Ваша пицца готовится, ожидайте.';
+// }
+// // Пиши код ниже этой строки
+
+// const result = makePizza();
+// const pointer = makePizza;
+
+// console.log(result);
+// console.table(pointer);
+//==============================================================================
 
