@@ -1277,11 +1277,11 @@
 //==============================================================================
 //==============================================================================
 // Стрелочные функции 
-const add = (a, b, c) => a * b - c;
-console.log(add(3,3,3));
+// const add = (a, b, c) => a * b - c;
+// console.log(add(3,3,3));
 
-const fn = (a, b, c) => a + b + c;
-console.log(fn(4,5,6))
+// const fn = (a, b, c) => a + b + c;
+// console.log(fn(4,5,6))
 //==============================================================================
 //========================МОДУЛЬ 4 Задача 1/10=====================================
 
@@ -1296,4 +1296,172 @@ console.log(fn(4,5,6))
 // console.log(result);
 // console.table(pointer);
 //==============================================================================
+
+
+//===============Парктика 30-05-21================================
+
+//===============задача 1========================
+// Напишите функцию pow(x,n), которая возвращает x в степени n.
+// Иначе говоря, умножает x на себя n раз и возвращает результат.
+
+// const pow = function(x, n) {
+//   return Math.pow(x, n)
+// }
+// console.log(pow(2, 3))
+
+// ============================TASK 5===========================
+// напиши функцию которая будет суммировать соседние числа
+//  и пушить их в новый массив
+
+// const someArr = [22, 11, 34, 5, 12, 13, 14, 15]; результат [33, 39, 25, 29]
+
+// const someArr = [22, 11, 34, 5, 12, 13, 14, 15];
+
+// const sumNeibors = function(someArr) {
+//   const newArr = [];
+// for (let i = 0; i < someArr.length; i += 2) {
+//  for (let y = 1; y < someArr.length; y +=2) {
+// }
+// }
+//  newArr.push(someArr[i] + someArr[y])
+// }
+// console.log(sumNeibors(someArr))
+
+// const someArr = [22, 11, 34, 5, 12, 13, 14, 15];
+
+// const someFn = function(arr){
+
+//     const array = [];
+
+//     for (let i = 0; i< arr.length; i+=2){
+        
+//         array.push(arr[i]+arr[i+1])
+        
+//     }
+//     return array;
+// }
+
+// console.log(someFn(someArr));
+//=================================================================================
+
+//==============================TASK 5.1=================================
+// Напишите решение, которое вычисляет сумму
+// квадратных корней для всех чисел у которых квадратный 
+// корень будет целым числом.
+
+// const arr = [4, 3, 5, 16, 16, 33, 4, 9]
+
+// const sumNumb = function(someArr) {
+//   const newArr = [];
+//   for( let i = 0; i < arr.length; i += 1 ) {
+//     if (Number.isInteger(Math.sqrt(arr[i])))
+//     if (Number.isInteger(Math.sqrt(arr[i]))) {
+//       newArr.push(Math.sqrt(arr[i]))
+//     }
+//     }
+//   return newArr
+// }
+// console.log(sumNumb(arr))
+//==========================================================================
+//==============================TASK 5.2=================================
+// Давайте произведём 5 операций с массивом.
+
+// Создайте массив styles с элементами «Джаз» и «Блюз».
+// Добавьте «Рок-н-ролл» в конец.
+// Замените значение в середине на «Классика». Ваш код для поиска 
+// значения в середине должен работать для массивов с любой длиной.
+// Удалите первый элемент массива и покажите его.
+// Вставьте «Рэп» и «Регги» в начало массива.
+
+// const styles = ['Джаз', 'Блюз','Джаз','Джаз'];
+// console.log(styles.push('Классика'));
+// styles.push('Рок-н-ролл');
+
+// console.log(styles);
+
+// styles.splice(styles.length/2, 1,'Классика');
+// console.log(styles);
+
+// // styles.shift()
+// console.log(styles.shift())
+// styles.unshift('Рэп','Регги');
+// console.log(styles);
+//==========================================================================
+
+// ==========================Task 3====================================================
+
+// Нужно перебрать объекты и вывести имя лучшего сотрудника
+// function findBestEmployee(obj) {
+//   let name = '';
+//   let maxValue = 0;
+//   for(let key in obj) {
+//     if(obj[key] > maxValue) {
+//       maxValue = obj[key]
+//     name = key;
+//   }
+       
+//   }
+//   return name
+// }
+// ======================= решение после 6-го модуля ==============================
+// const findBestEmployee = (obj) => Object.entries(obj).sort((a, b) => b[1] - a[1])[0][0];
+// ============================================= ==============================
+
+/*
+ * Вызовы функции для проверки работоспособности твоей реализации.
+ */
+// console.log(
+//   findBestEmployee({
+//     ann: 29,
+//     david: 35,
+//     helen: 1,
+//     lorence: 99,
+//   })
+// ); // lorence
+// console.log(
+//     findBestEmployee({
+//         poly: 12,
+//         mango: 17,
+//         ajax: 4,
+//     }),
+// ); // mango
+// console.log(
+//     findBestEmployee({
+//         lux: 147,
+//         david: 21,
+//         kiwi: 19,
+//         chelsy: 38,
+//     }),
+// ); // lux
+
+//======================== Приветсти массив к одному уровню ======================
+
+// const arr = ['2232', ['Hello', 'world'], '777', ['new array', ['some array', ['next level']]]]
+
+// console.log(arr.flat(Infinity));
+// console.log(arr.join(",").split(","));
+
+
+//=========================================================================
+
+// Функция formatMessage(message, maxLength)
+// принимает строку (параметр message) и форматирует её,
+// если длина превышает значение в параметре maxLength.
+
+function formatMessage(message, maxLength) {
+  if (message.length <= maxLength) {
+    console.log(message);
+    // return message;
+    return
+  }
+  console.log(message.slice(0, maxLength) + '...');
+  // return message.slice(0, maxLength) + '...';
+}
+
+
+formatMessage("Curabitur ligula sapien", 16); //возвращает 'Curabitur ligula...'.
+formatMessage("Curabitur ligula sapien", 23); //возвращает 'Curabitur ligula sapien'.
+formatMessage("Nunc sed turpis a felis in nunc fringilla", 15); //возвращает 'Nunc sed turpis...'.
+formatMessage("Nunc sed turpis a felis in nunc fringilla", 41); //возвращает 'Nunc sed turpis a felis in nunc fringilla'.
+
 
