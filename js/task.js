@@ -1448,20 +1448,234 @@
 // принимает строку (параметр message) и форматирует её,
 // если длина превышает значение в параметре maxLength.
 
-function formatMessage(message, maxLength) {
-  if (message.length <= maxLength) {
-    console.log(message);
-    // return message;
-    return
-  }
-  console.log(message.slice(0, maxLength) + '...');
-  // return message.slice(0, maxLength) + '...';
+// function formatMessage(message, maxLength) {
+//   if (message.length <= maxLength) {
+//     console.log(message);
+//     // return message;
+//     return
+//   }
+//   console.log(message.slice(0, maxLength) + '...');
+//   // return message.slice(0, maxLength) + '...';
+// }
+
+
+// formatMessage("Curabitur ligula sapien", 16); //возвращает 'Curabitur ligula...'.
+// formatMessage("Curabitur ligula sapien", 23); //возвращает 'Curabitur ligula sapien'.
+// formatMessage("Nunc sed turpis a felis in nunc fringilla", 15); //возвращает 'Nunc sed turpis...'.
+// formatMessage("Nunc sed turpis a felis in nunc fringilla", 41); //возвращает 'Nunc sed turpis a felis in nunc fringilla'.
+
+
+
+// const printValue = function (value) {
+//   console.log(value);
+// };
+
+// const prettyPrint = function (value) {
+//   console.log('Logging value: ', value);
+// };
+
+// const repeat = function (n, action) {
+//   for (let i = 0; i < n; i += 1) {
+//     action(i);
+//   }
+// };
+
+// const printName(x){
+// x + prettyPrint
+// }
+// // Передаем printValue как callback-функцию
+// repeat(3, printValue);
+// // 0
+// // 1
+// // 2
+
+// // Передаем prettyPrint как callback-функцию
+// repeat(3, prettyPrint);
+// // Logging value: 0
+// // Logging value: 1
+// // Logging value: 2
+
+
+// const filter = function (array, test) {
+//   const filteredElements = [];
+
+//   for (const element of array) {
+//     const passed = test(element);
+
+//     if (passed) {
+//       filteredElements.push(element);
+//     }
+//   }
+
+//   return filteredElements;
+// };
+
+// const fruits = [
+//   { name: 'apples', quantity: 200, isFresh: true },
+//   { name: 'grapes', quantity: 150, isFresh: false },
+//   { name: 'bananas', quantity: 100, isFresh: true },
+// ];
+
+// const freshFruits = filter(fruits, fruit => fruit.isFresh);
+// console.log(freshFruits); // массив с объектами apples и bananas
+
+// const fruitsWithAmount = filter(fruits, fruit => fruit.quantity >= 120);
+// console.log(fruitsWithAmount); // массив с объектами apples и grapes
+
+//============================= HW Module 4 задача 2/10 =================================================
+
+// Дополни функцию makeMessage так, чтобы она ожидала вторым параметром (параметр callback) 
+// колбэк-функцию и возвращала ее вызов. Функция deliverPizza или makePizza будет передаваться как колбэк 
+// и ожидать аргументом имя готовой доставляемой пиццы.
+// Объявлена функция deliverPizza.
+// Объявлена функция makePizza.
+// Объявлена функция makeMessage.
+// Функция makeMessage принимает два параметра, названые согласно задания, pizzaName и callback.
+// Вызов makeMessage('Роял гранд', makePizza) возвращает строку 'Пицца Роял гранд готовится, ожидайте...'.
+// Вызов makeMessage('Ультрасыр', deliverPizza) возвращает строку 'Доставляем пиццу Ультрасыр.'..
+
+// function deliverPizza(pizzaName) {
+//   return `Доставляем пиццу ${pizzaName}.`;
+// }
+
+// function makePizza(pizzaName) {
+//   return `Пицца ${pizzaName} готовится, ожидайте...`;
+// }
+
+// // Пиши код ниже этой строки
+// function makeMessage(pizzaName , callback) {
+//   return callback(pizzaName);
+// }
+
+// console.log(makeMessage('Роял гранд', makePizza));
+// console.log(makeMessage('Ультрасыр', deliverPizza));
+//=======================================================================
+
+// function registerGuest(name, callback) {
+//   console.log(`Регистрируем гостя ${name}.`);
+//   callback(name);
+// }
+
+// // Передаём инлайн функцию greet как колбэк
+// registerGuest('Манго', function greet(name) {
+//   console.log(`Добро пожаловать ${name}.`);
+// });
+
+// // Передаём инлайн функцию notify как колбэк
+// registerGuest('Поли', function notify(name) {
+//   console.log(`Уважаемый(ая) ${name}, ваш номер будет готов через 30 минут.`);
+// });
+//============================= HW Module 4 задача 3/10 =================================================
+
+// Дополни второй вызов функции makePizza(pizzaName, callback), передав вторым аргументом инлайн колбэк-функцию 
+// eatPizza(pizzaName), которая логирует строку 'Едим пиццу <имя пиццы>'.
+
+// Тесты
+// Объявлена функция makePizza.
+// Функция makePizza принимает два параметра.
+// Вторым аргументом при вызове makePizza('Ультрасыр') передана функция eatPizza с единственным параметром pizzaName.
+
+// function makePizza(pizzaName, callback) {
+//   console.log(`Пицца ${pizzaName} готовится, ожидайте...`);
+//   callback(pizzaName);
+// }
+
+// makePizza('Роял гранд', function deliverPizza(pizzaName) {
+//   console.log(`Доставляем пиццу ${pizzaName}.`);
+// });
+// // Пиши код ниже этой строки
+
+// makePizza('Ультрасыр',function eatPizza(pizzaName) {
+//   console.log(`Едим пиццу ${pizzaName}`)});
+
+//=========================================================================
+//================== HW Module 4 задача 4/10==============================
+  // Задание
+// Необходимо написать логику обработки заказа пиццы. Выполни рефакторинг метода order так, чтобы он принимал вторым и третим параметрами два колбэка onSuccess и onError.
+
+// Если в свойстве pizzas нет пиццы с названием из параметра pizzaName, метод order должен возвращать результат вызова колбэка onError, передавая ему аргументом строку 'В ассортименте нет пиццы с названием <имя пиццы>.'
+// Если в свойстве pizzas есть пицца с названием из параметра pizzaName, метод order должен возвращать результат вызова колбэка onSuccess, передавая ему аргументом имя заказанной пиццы.
+// После объявления объекта pizzaPalace мы добавили колбэки и вызовы методов. Пожалуйста ничего там не меняй.
+
+// Тесты
+// Метод order объявляет три параметра.
+// Вызов pizzaPalace.order('Аль Копчино', makePizza, onOrderError) возвращает 'Ваш заказ принят. Готовим пиццу Аль Копчино.'.
+// Вызов pizzaPalace.order('Четыре нарезона', makePizza, onOrderError) возвращает 'Ваш заказ принят. Готовим пиццу Четыре нарезона.'.
+// Вызов pizzaPalace.order('Биг майк', makePizza, onOrderError) возвращает 'Ошибка! В ассортименте нет пиццы с названием Биг майк.'.
+// Вызов pizzaPalace.order('Венская', makePizza, onOrderError) возвращает 'Ошибка! В ассортименте нет пиццы с названием Венская.'.
+
+// const pizzaPalace = {
+//   pizzas: ['Ультрасыр', 'Аль Копчино', 'Четыре нарезона'],
+//   order(pizzaName, onSuccess, onError) {
+//     for (const pizza of this.pizzas){
+      
+//       if (pizzaName === pizza) {
+//         return onSuccess(pizzaName);
+//       }
+//     }
+//     return onError(pizzaName)
+//     ;
+//   },
+// };
+// // Пиши код выше этой строки
+
+// // Колбэк для onSuccess
+// function makePizza(pizzaName) {
+//   return `Ваш заказ принят. Готовим пиццу ${pizzaName}.`;
+// }
+
+// // Колбэк для onError
+// function onOrderError(pizzaName) {
+//   return `Ошибка! В ассортименте нет пиццы с названием ${pizzaName}.`;
+// }
+
+// // Вызовы метода с колбэками
+// console.log(pizzaPalace.order('Аль Копчино', makePizza, onOrderError));
+// console.log(pizzaPalace.order('Четыре нарезона', makePizza, onOrderError));
+// console.log(pizzaPalace.order('Биг майк', makePizza, onOrderError));
+// console.log(pizzaPalace.order('Венская', makePizza, onOrderError));
+//================================================================
+//================== HW Module 4 задача 7/10 ==============================
+//=========================== Метод call apply ==============================
+
+// Сервису приготовления и доставки еды требуется функция генерации сообщений о статусе заказа.
+
+// Дополни функцию composeMessage(position) так, чтобы она возвращала строку в формате 'Готовим <блюдо> для <почта>. Ваш заказ <позиция>-й в очереди.' Позиция это значение параметра position - позиция элемента в массиве (на единицу больше чем индекс).
+
+// Не объявляй дополнительные параметры функции composeMessage(position).
+// Используй call для вызова функции в контексте одного объекта-заказа.
+// Используй this в теле функции для доступа к свойствам объекта-заказа в контексте которого она была вызывана.
+// Дополни код так, чтобы в переменной messages получился массив сообщений о статусе заказов из массива orders с помощью цикла for.
+
+// Тесты
+// Объявлена переменная orders.
+// Значение переменной orders это исходный массив объектов-заказов.
+// Объявлена функция composeMessage(position).
+// У функции composeMessage объявлен один параметр position.
+// В теле функции composeMessage используется this.
+// Функция composeMessage вызывается методом call внутри цикла for.
+// Объявлена переменная messages.
+// Значение переменной messages это массив ['Готовим Burger для solomon@topmail.ua. Ваш заказ 1-й в очереди.', 'Готовим Pizza для artemis@coldmail.net. Ваш заказ 2-й в очереди.', 'Готовим Taco для jacob@mail.com. Ваш заказ 3-й в очереди.'].
+
+const orders = [
+  { email: 'solomon@topmail.ua', dish: 'Burger' },
+  { email: 'artemis@coldmail.net', dish: 'Pizza' },
+  { email: 'jacob@mail.com', dish: 'Taco' },
+];
+// // Пиши код ниже этой строки
+// function composeMessage(position) {}
+
+// const messages = [];
+//------------------------------------------------------
+
+
+function composeMessage(position) {
+  return `Готовим ${this.dish} для ${this.email}. Ваш заказ ${position}-й в очереди.`;
+}
+const messages = [];
+for (let i = 0; i < orders.length; i += 1) {
+  messages.push(composeMessage.call(orders[i], i + 1)); //call
+  messages.push(composeMessage.apply(orders[i], [i + 1]))//apply
 }
 
-
-formatMessage("Curabitur ligula sapien", 16); //возвращает 'Curabitur ligula...'.
-formatMessage("Curabitur ligula sapien", 23); //возвращает 'Curabitur ligula sapien'.
-formatMessage("Nunc sed turpis a felis in nunc fringilla", 15); //возвращает 'Nunc sed turpis...'.
-formatMessage("Nunc sed turpis a felis in nunc fringilla", 41); //возвращает 'Nunc sed turpis a felis in nunc fringilla'.
-
-
+console.log(messages)
