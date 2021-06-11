@@ -1687,19 +1687,19 @@
 // foo.bind(obj, arg1, arg2, ...)
 // Метод bind создаёт и возвращает копию функции foo с привязанным контекстом obj и аргументами arg1, arg2 и т. д. Получается копия функции которую можно передать куда угодно и вызвать когда угодно.
 
-function greet(clientName) {
-  return `${clientName}, добро пожаловать в «${this.service}».`;
-}
+// function greet(clientName) {
+//   return `${clientName}, добро пожаловать в «${this.service}».`;
+// }
 
-const steam = { service: 'Steam' };
-const steamGreeter = greet.bind(steam);
+// const steam = { service: 'Steam' };
+// const steamGreeter = greet.bind(steam);
 
-console.log(steamGreeter('Манго')); // "Манго, добро пожаловать в «Steam»."
+// console.log(steamGreeter('Манго')); // "Манго, добро пожаловать в «Steam»."
 
-const gmail = { service: 'Gmail' };
-const gmailGreeter = greet.bind(gmail);
+// const gmail = { service: 'Gmail' };
+// const gmailGreeter = greet.bind(gmail);
 
-console.log(gmailGreeter('Поли')); // "Поли, добро пожаловать в «Gmail»."
+// console.log(gmailGreeter('Поли')); // "Поли, добро пожаловать в «Gmail»."
 //-------------------------------------------------------------------
 
 // ================  Метод bind  и методы объекта ==============================
@@ -1743,34 +1743,221 @@ console.log(gmailGreeter('Поли')); // "Поли, добро пожалова
 // Переменной secondInvoke присвоена строка 'Почта poly@hotmail.de удалена из рассылки.'.
 // Второй вызов logAndInvokeAction с почтой poly@hotmail.de и методом service.unsubscribe привязан к объекту service.
 
-const service = {
-  mailingList: ['mango@mail.com', 'poly@hotmail.de', 'ajax@jmail.net'],
-  subscribe(email) {
-    this.mailingList.push(email);
-    return `Почта ${email} добавлена в рассылку.`;
-  },
-  unsubscribe(email) {
-    this.mailingList = this.mailingList.filter((e) => e !== email);
-    return `Почта ${email} удалена из рассылки.`;
-  },
-};
+// const service = {
+//   mailingList: ['mango@mail.com', 'poly@hotmail.de', 'ajax@jmail.net'],
+//   subscribe(email) {
+//     this.mailingList.push(email);
+//     return `Почта ${email} добавлена в рассылку.`;
+//   },
+//   unsubscribe(email) {
+//     this.mailingList = this.mailingList.filter((e) => e !== email);
+//     return `Почта ${email} удалена из рассылки.`;
+//   },
+// };
 
-function logAndInvokeAction(email, action) {
-  console.log(`Выполняем действие с ${email}.`);
-  return action(email);
-}
+// function logAndInvokeAction(email, action) {
+//   console.log(`Выполняем действие с ${email}.`);
+//   return action(email);
+// }
 
-const firstInvoke = logAndInvokeAction('kiwi@mail.uk', service.subscribe.bind(service);
-console.log(firstInvoke);
-// Почта kiwi@mail.uk добавлена в рассылку.
+// const firstInvoke = logAndInvokeAction('kiwi@mail.uk', service.subscribe.bind(service);
+// console.log(firstInvoke);
+// // Почта kiwi@mail.uk добавлена в рассылку.
 
-console.log(service.mailingList);
-/* ['mango@mail.com', 
-    'poly@hotmail.de', 
-    'ajax@jmail.net', 
-    'kiwi@mail.uk']*/
-const secondInvoke = logAndInvokeAction('poly@hotmail.de', service.unsubscribe.bind(service));
-console.log(secondInvoke);
-// Почта poly@hotmail.de удалена из рассылки.
+// console.log(service.mailingList);
+// /* ['mango@mail.com', 
+//     'poly@hotmail.de', 
+//     'ajax@jmail.net', 
+//     'kiwi@mail.uk']*/
+// const secondInvoke = logAndInvokeAction('poly@hotmail.de', service.unsubscribe.bind(service));
+// console.log(secondInvoke);
+// // Почта poly@hotmail.de удалена из рассылки.
 
-console.log(service.mailingList); // ['mango@mail.com', 'ajax@jmail.net', 'kiwi@mail.uk']
+// console.log(service.mailingList); // ['mango@mail.com', 'ajax@jmail.net', 'kiwi@mail.uk']
+
+//-------------------------------------------------------------------
+
+// ================ Modul 5 ООП Наследование, Конструкторы, прототипы ==============================
+
+// ================ Задача 5/19 Свойство prototype ==============================
+
+// Мы уже знаем что такое прототип объекта, свойство __proto__ и как происходит поиск отсутствующих свойств объекта по цепочке прототипов. Во время вызова функции-конструктора через new и создания нового объекта со свойствами, ему также устанавливается прототип.
+// У каждой функции, кроме стрелочных, есть свойство prototype, значение которого это объект с единственным свойством constructor, указывающим на саму функцию-конструктор.
+
+// function User() {}
+// console.log(User.prototype); // { constructor: User }
+// При вызове функции-конструктора и создании объекта через new, объект в свойстве prototype функции-конструктора будет прототипом создаваемого объекта.
+
+// const mango = new User();
+// console.log(User.prototype.isPrototypeOf(mango)); // true
+// В свойство prototype можно записывать свойства и методы, которые будут доступны всем объектам созданным этой функцией-конструктором. Методы в prototype будут вызываться объектами созданными функцией-конструктором, поэтому для доступа к свойствам вызываемого объекта в методах используется ключевое слово this.
+
+// function User({ name, email }) {
+//   this.name = name;
+//   this.email = email;
+// }
+
+// User.prototype.getEmail = function () {
+//   return this.email;
+// };
+
+// User.prototype.changeEmail = function (newEmail) {
+//   this.email = newEmail;
+// };
+
+// const mango = new User({ name: 'Манго', email: 'mango@mail.com' });
+
+// console.log(mango.getEmail()); // mango@mail.com
+// mango.changeEmail('mango@supermail.com');
+// console.log(mango.getEmail()); // mango@supermail.com
+// console.log(mango)
+
+// // Задание
+// // Добавь в свойство prototype функции-конструктора Car два метода:
+
+// // getPrice() - возвращает значение свойства price из объекта который его будет вызывать.
+// // changePrice(newPrice) - обновляет значение свойства price у объекта который его будет вызывать на newPrice.
+// function Car({ brand, model, price }) {
+//   this.brand = brand;
+//   this.model = model;
+//   this.price = price;
+// }
+// Car.prototype.getPrice = function () {
+// return this.price
+// }
+
+// Car.prototype.changePrice = function(newPrice) {
+// return this.price = newPrice
+// }
+
+// const car1 = new Car({ brand: 'Audi', model: 'Q3', price: 36000 })
+// console.log(car1.getPrice());
+// car1.changePrice(35000);
+// console.log(car1.getPrice());
+
+//================= Задача 6 / 19 ========================================
+// Задача. Хранилище
+// Задание
+// С помощью Function Declaration напиши функцию-конструктор Storage, которая будет создавать объекты для управления складом товаров. Функция ожидает только один аргумент - начальный массив товаров, который записывается на создаваемый объект в свойство items.
+
+// Добавь методы на прототип:
+
+// getItems() - возвращает массив текущих товаров в свойстве items объекта, который вызывает этот метод.
+// addItem(newItem) - принимает новый товар newItem и добавляет его в массив товаров в свойстве items объекта, который вызывает этот метод.
+// removeItem(item) - принимает товар item и удаляет его из массива товаров в свойстве items объекта, который вызывает этот метод.
+// Под комментарием мы добавили инициализацию экземпляра и вызовы методов в той последовательности, в которой твой код будут проверять тесты. Пожалуйста ничего там не меняй.
+
+// Тесты
+// Объявлена функция Storage(items).
+// Вызов Storage.prototype.hasOwnProperty('getItems') возвращает true.
+// Вызов Storage.prototype.hasOwnProperty('addItem') возвращает true.
+// Вызов Storage.prototype.hasOwnProperty('removeItem') возвращает true.
+// В результате вызова new Storage([ 'Нанитоиды', 'Пролонгер', 'Антигравитатор' ]) значение переменной storage это объект.
+// Вызов Storage.prototype.isPrototypeOf(storage) возвращает true.
+// У объекта storage есть свойство items.
+// Первый вызов storage.getItems(), сразу после инциализации экземпляра, возвращает массив ["Нанитоиды", "Пролонгер", "Антигравитатор"].
+// Второй вызов, storage.getItems(), после вызова storage.addItem('Дроид'), возвращает массив ["Нанитоиды", "Пролонгер", "Антигравитатор", "Дроид"].
+// Третий вызов storage.getItems(), после вызова storage.removeItem('Пролонгер'), возвращает массив ["Нанитоиды", "Антигравитатор", "Дроид"].
+
+// function Storage ({items}) {
+//   this.items = items
+//  }
+//  Storage.prototype.getItems = function() {
+//   return this.items
+// }
+// Storage.prototype.addItem = function(newItem) {
+//   return this.items.push(newItem)
+// }
+// Storage.prototype.removeItem = function(item) {
+//   return this.items.splice(this.items.indexOf(item),1);
+//   };
+
+// // Пиши код выше этой строки
+// const storage = new Storage(['Нанитоиды', 'Пролонгер', 'Антигравитатор']);
+// console.log(storage.getItems()); // ["Нанитоиды", "Пролонгер", "Антигравитатор"]
+// storage.addItem('Дроид');
+// console.log(storage.getItems()); // ["Нанитоиды", "Пролонгер", "Антигравитатор", "Дроид"]
+// storage.removeItem('Пролонгер');
+// console.log(storage.getItems()); // ["Нанитоиды", "Антигравитатор", "Дроид"]
+
+
+// // Класс со статическими свойствами и методами
+// class Calc {
+//   // Класс-калькулятор для двух аргументов
+//   constructor() {}
+
+//   // Метод как замена свойству
+//   static get PI() {
+//     return 3.14;
+//   }
+
+//   // Статический метод +
+//   static add(...args) {
+//     return args.reduce((acc, next) => acc + next, 0);
+//   }
+
+//   // Статический метод *
+//   static mult(...args) {
+//     return args.reduce((acc, next) => acc * next, 1);
+//   }
+// }
+
+// console.log(Calc.PI); // 3.14
+// console.log(Calc.add(2, 3, 4)); // 9
+// console.log(Calc.mult(12, 3, 4)); // 144
+
+// const calc1 = new Calc
+
+// console.log(calc1)
+//---------------------------------------------------------------------
+
+//================= Задача  7/ 19 ========================================
+
+// function StringBuilder(baseValue){
+//  this.value = baseValue;
+// }
+// StringBuilder.prototype.getValue = function(){
+//   return this.value
+// } 
+// StringBuilder.prototype.padEnd = function(str){
+//   return this.value += str
+// }
+// StringBuilder.prototype.padStart = function(str) {
+//     return this.value = str + this.value
+// }
+// StringBuilder.prototype.padBoth = function (str) {
+//     return this.value = str + this.value + str
+// }
+
+//   const srt1 = new StringBuilder('klklkl')
+//   console.log(srt1)
+  
+//   // Пиши код выше этой строки
+//   const builder = new StringBuilder('.');
+//   console.log(builder)
+//   console.log(builder.getValue()); // '.'
+//   builder.padStart('^');
+//   console.log(builder.getValue()); // '^.'
+//   builder.padEnd('^');
+//   console.log(builder.getValue()); // '^.^'
+//   builder.padBoth('=');
+//   console.log(builder.getValue()); // '=^.^='
+// //---------------------------------------------------------------------
+
+// //=======================Задача 10 / 19 =============================
+
+
+//   class Car {
+//     constructor({ brand, model, price }) {
+//       this.brand = brand;
+//       this.model = model;
+//       this.price = price;
+//     }
+//       getPrice() {
+//       return this.price
+//       }
+//       changePrice(newPrice){
+//       return this.price = newPrice 
+//     }
+//   }
+//   //---------------------------------------------------------------------
