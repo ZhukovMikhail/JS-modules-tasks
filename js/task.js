@@ -1960,4 +1960,603 @@
 //       return this.price = newPrice 
 //     }
 //   }
-//   //---------------------------------------------------------------------
+// --------------------------------------------------------------------
+//=======================Задача 11 / 19 =============================
+// class Car {
+//   #brand;
+//   constructor({ brand, model, price }) {
+//     this.#brand = brand;
+//     this.model = model;
+//     this.price = price;
+//   }
+//   getBrand() {
+//   return this.#brand
+//   }
+//   changeBrand(newBrand) {
+//     this.#brand = newBrand;
+//   }
+// }
+// const car1 = new Car({ brand: 'Audi', model: 'Q3', price: 36000 });
+// const car2 = new Car({ brand: 'BMW', model: 'X5', price: 58900 });
+// const car3 = new Car({ brand: 'Nissan', model: 'Murano', price: 31700 });
+// console.log(car1)
+// console.log(car2)
+// console.log(car3)
+// console.log(car1.getBrand())
+// car1.changeBrand('Tavria')
+// console.log(car1.getBrand())
+
+// --------------------------------------------------------------------
+
+//=======================Задача 12 / 19 =============================
+// Задача. Хранилище 2.0
+// Задание
+// Выполни рефакторинг заменив функцию-конструктор Storage на класс с методами. Сделай так, чтобы свойство items было приватным.
+
+// Под комментарием мы добавили инициализацию экземпляра и вызовы методов в той последовательности, в которой твой код будут проверять тесты. Пожалуйста ничего там не меняй.
+
+// Объявлен класс Storage.
+// Свойство items в классе Storage объявлено приватным.
+// Конструктор класса принимает свойство items.
+// Вызов Storage.prototype.hasOwnProperty('getItems') возвращает true.
+// Вызов Storage.prototype.hasOwnProperty('addItem') возвращает true.
+// Вызов Storage.prototype.hasOwnProperty('removeItem') возвращает true.
+// В результате вызова new Storage([ 'Нанитоиды', 'Пролонгер', 'Антигравитатор' ]) значение переменной storage это объект.
+// Вызов Storage.prototype.isPrototypeOf(storage) возвращает true.
+// У объекта storage нет свойства items.
+// Первый вызов storage.getItems(), сразу после инциализации экземпляра, возвращает массив ["Нанитоиды", "Пролонгер", "Антигравитатор"].
+// Второй вызов, storage.getItems(), после вызова storage.addItem('Дроид'), возвращает массив ["Нанитоиды", "Пролонгер", "Антигравитатор", "Дроид"].
+// Третий вызов storage.getItems(), после вызова storage.removeItem('Пролонгер'), возвращает массив ["Нанитоиды", "Антигравитатор", "Дроид"].
+
+// class Storage{
+//   #items;
+//   constructor(items){
+//     this.#items = items
+//   }
+// getItems() {
+//   return this.#items;
+// };
+
+// addItem(newItem) {
+//   this.#items.push(newItem);
+// };
+
+// removeItem(item) {
+//   const itemIndex = this.#items.indexOf(item);
+//   this.#items.splice(itemIndex, 1);
+// };
+// }
+// // Пиши код выше этой строки
+// const storage = new Storage(["Нанитоиды", "Пролонгер", "Антигравитатор"]);
+// console.log(storage.getItems()); // ["Нанитоиды", "Пролонгер", "Антигравитатор"]
+// storage.addItem("Дроид");
+// console.log(storage.getItems()); // ["Нанитоиды", "Пролонгер", "Антигравитатор", "Дроид"]
+// storage.removeItem("Пролонгер");
+// console.log(storage.getItems()); // ["Нанитоиды", "Антигравитатор", "Дроид"]
+
+// // --------------------------------------------------------------------
+
+// //=======================Задача 15 / 19 =============================
+// // Задание
+// // Выполни рефакторинг класса Car. Добавь публичное статическое свойство MAX_PRICE со значением 50000 - максимально допустимая цена автомобиля.
+
+// // Добавь сеттеру price проверку передаваемого значения параметра newPrice. Если оно больше чем MAX_PRICE, сеттер ничего не делает, а если меньше или равно, то перезаписывает цену автомобиля.
+// Тесты
+// Объявлен класс Car.
+// У класса Car есть статическое свойство MAX_PRICE.
+// Значение статического свойства MAX_PRICE это число 50000.
+// У экземпляра нет свойства MAX_PRICE.
+// В классе Car объявлен геттер price.
+// В классе Car объявлен сеттер price.
+// У экземпляра класса Car вызов сеттера price, со значением аргумента меньше чем значение MAX_PRICE, изменяет свойство #price.
+// У экземпляра класса Car вызов сеттера price, со значением аргумента больше чем значение MAX_PRICE, не изменяет свойство #price.
+
+// class Car {
+//   // Пиши код ниже этой строки
+//   static MAX_PRICE = 50000;
+//   #price;
+
+//   constructor({ price }) {
+//     this.#price = price;
+//   }
+
+//   get price() {
+//     return this.#price;
+//   }
+
+//   set price(newPrice) {
+//   if (newPrice <= Car.MAX_PRICE) {
+//     return this.#price = newPrice 
+//   }
+//   // console.log('цена больше допустимой')
+//   return this.#price;
+//   }
+//   // Пиши код выше этой строки
+// }
+
+// const audi = new Car({price: 35000});
+// console.log(audi.price); // 35000
+
+// audi.price = 49000;
+// console.log(audi.price); // 49000
+
+// audi.price = 51000;
+// console.log(audi.price); // 49000
+// --------------------------------------------------------------------
+
+// //=======================Задача 16 / 19 =============================
+// Задание
+// Добавь классу Car публичный статический метод checkPrice(price), принимающий цену автомобиля. Метод должен сравнить значения параметра price и приватного статического свойства MAX_PRICE.
+
+// Если цена автомобиля превышает максимальную, метод должен вернуть строку 'Внимание! Цена превышает допустимую.'.
+// В противном случае метод должен вернуть строку 'Всё хорошо, цена в порядке.'.
+// Под объявлением класса мы добавили инициализацию экземпляра и вызовы методов, чтобы показать как будет использоваться метод checkPrice(price).
+
+// Тесты
+// Объявлен класс Car.
+// У класса Car есть статический метод checkPrice(price).
+// Вызов Car.checkPrice(36000) возвращает строку 'Всё хорошо, цена в порядке.'.
+// Вызов Car.checkPrice(18000) возвращает строку 'Всё хорошо, цена в порядке.'.
+// Вызов Car.checkPrice(64000) возвращает строку 'Внимание! Цена превышает допустимую.'.
+// Вызов Car.checkPrice(57000) возвращает строку 'Внимание! Цена превышает допустимую.'.
+
+// class Car {
+//   static #MAX_PRICE = 50000;
+//   // Пиши код ниже этой строки
+//   static checkPrice(price) {
+//    if (price > Car.#MAX_PRICE) {
+//     return 'Внимание! Цена превышает допустимую.'
+//    }
+//    return 'Всё хорошо, цена в порядке.'
+//   }
+//   // Пиши код выше этой строки
+//   constructor({ price }) {
+//     this.price = price;
+//   }
+// }
+
+// const audi = new Car({ price: 36000 });
+// const bmw = new Car({ price: 64000 });
+
+// console.log(Car.checkPrice(audi.price)); // Всё хорошо, цена в порядке.
+// console.log(Car.checkPrice(bmw.price)); // Внимание! Цена превышает допустимую.
+// console.log(Car.checkPrice(36000));
+// console.log(Car.checkPrice(18000));
+// console.log(Car.checkPrice(64000));
+// // console.log(Car.checkPrice(57000));
+// // --------------------------------------------------------------------
+
+// // //=======================Задача 19 / 19 =============================
+// Задание
+// Добавь классу Admin следующие свойства и методы.
+
+// Публичное свойство blacklistedEmails для хранения чёрного списка почтовых адресов пользователей. Значение по умолчанию это пустой массив.
+// Публичный метод blacklist(email) для добавления почты в чёрный список. Метод должен добавлять значение параметра email в массив хранящийся в свойстве blacklistedEmails.
+// Публичный метод isBlacklisted(email) для проверки почты в чёрном списке. Метод должен проверять наличие значения параметра email в массиве хранящемся в свойстве blacklistedEmails и возвращать true или false.
+// После объявления класса мы добавили инициализацию экземпляра и вызовы методов в той последовательности, в которой твой код будут проверять тесты. Пожалуйста ничего там не меняй.
+
+// Тесты
+// Объявлен класс Admin.
+// Класс Admin наследует от класса User.
+// У класса Admin есть публичное свойство blacklistedEmails.
+// У класса Admin есть публичный метод blacklist.
+// У класса Admin есть публичный метод isBlacklisted.
+// После вызова mango.blacklist('poly@mail.com') значение свойства blacklistedEmails это массив [ 'poly@mail.com' ].
+// Вызов mango.isBlacklisted('mango@mail.com') возвращает false.
+// Вызов mango.isBlacklisted('poly@mail.com') возвращает true.
+
+// class User {
+//   email;
+//   constructor(email) {
+//     this.email = email;
+//   }
+//   get email() {
+//     return this.email;
+//   }
+//   set email(newEmail) {
+//     this.email = newEmail;
+//   }
+// }
+// class Admin extends User {
+//   // Пиши код ниже этой строки
+//   static AccessLevel = {
+//     BASIC: 'basic',
+//     SUPERUSER: 'superuser'
+//   };
+//   accessLevel;
+//   blacklistedEmails;
+//   constructor({ email, accessLevel, blacklistedEmails = [] }) {
+//     super(email);
+//     this.accessLevel = accessLevel;
+// this.blacklistedEmails = blacklistedEmails;
+//   }
+// blacklist(email) {
+// this.blacklistedEmails.push(email);
+// }
+// isBlacklisted(email) {
+// if (this.blacklistedEmails.includes(email)) {
+// return true;
+// }
+// return false;
+// }
+//   // Пиши код выше этой строки
+// }
+
+// const mango = new Admin({
+//   email: 'mango@mail.com',
+//   accessLevel: Admin.AccessLevel.SUPERUSER
+// });
+
+// console.log(mango.email); // mango@mail.com
+// console.log(mango.accessLevel); // superuser
+// mango.blacklist('poly@mail.com');
+// console.log(mango.blacklistedEmails); // 'poly@mail.com'
+// console.log(mango.isBlacklisted('mango@mail.com')); //  false
+// console.log(mango.isBlacklisted('poly@mail.com')); // true 
+
+// //======================= практика ==============================================
+// const user = {
+//   name: "John",
+//   age: 25,
+//   surname: "Smith",
+// };
+
+// const optionsEmployee = {
+//   company: "Google",
+//   position: "developer",
+//   "user salary": 3000,
+// };
+
+// const user2 = { ...user, ...optionsEmployee };
+// const user3 = Object.assign({}, user, optionsEmployee);
+// const user4 = JSON.parse(JSON.stringify(user));
+
+// descriptors
+
+// Object.defineProperty(user, "age", {
+//   enumerable: false,
+//   writable: false,
+//   configurable: false,
+// });
+
+// const user3 = Object.defineProperties(
+//   {},
+//   Object.getOwnPropertyDescriptors(user)
+// );
+
+// console.log(user3);
+//---------------------------------------------------
+
+// ============================ задачачки ==================
+// Напиши функцию-конструктор Account, которая создает объект со свойствами login и email. В prototype функции-конструктора добавь метод getInfo(), который выводит в консоль значения полей login и email объекта который его вызвал.
+
+// function Account({ email, login }) {
+//   this.name = email;
+//   this.login = login;
+// }
+// Account.prototype.getInfo = function () {
+//   console.log(` Login: ${this.login}, Email:${this.name}`);
+// };
+
+// console.log(Account.prototype.getInfo); // function
+
+// const mango = new Account({
+//   login: 'Mangozedog',
+//   email: 'mango@dog.woof',
+// });
+
+// mango.getInfo(); // Login: Mangozedog, Email: mango@dog.woof
+
+// const poly = new Account({
+//   login: 'Poly',
+//   email: 'poly@mail.com',
+// });
+
+// poly.getInfo(); // Login: Poly, Email: poly@mail.com
+//---------------------------------------------------
+
+// ============================ задачачки ==================
+// Напиши класс User для создания пользователя со следующим свойствами:
+
+// name - строка
+// age - число
+// followers - число
+// Добавь метод getInfo(), который, выводит строку: User ${имя} is ${возраст} years old and has ${кол-во фоловеров} followers
+
+
+// class User {
+//   constructor({ name, age, followers }) {
+//     this.name = name;
+//     this.age = age;
+//     this.followers = followers;
+//   }
+//   getInfo() {
+//     console.log(`User ${this.name} is ${this.age} years old and has ${this.followers} followers`);
+//   }
+// }
+
+// const mango = new User({
+//   name: 'Mango',
+//   age: 2,
+//   followers: 20,
+// });
+
+// mango.getInfo(); // User Mango is 2 years old and has 20 followers
+
+// const poly = new User({
+//   name: 'Poly',
+//   age: 3,
+//   followers: 17,
+// });
+
+// poly.getInfo(); // User Poly is 3 years old and has 17 followers
+//---------------------------------------------------
+
+// ============================ задачачки ==================
+// Напиши класс Storage, который будет создавать объекты для управления складом товаров. При вызове будет получать один аргумент - начальный массив товаров, и записывать его в свойство items.
+
+// Добавь методы класса:
+
+// getItems() - возвращает массив текущих товаров
+// addItem(item) - получает новый товар и добавляет его к текущим
+// removeItem(item) - получет товар и, если он есть, удаляет его из текущих
+
+// const storage = new Storage([
+//   'Нанитоиды',
+//   'Пролонгер',
+//   'Железные жупи',
+//   'Антигравитатор',
+// ]);
+
+// const items = storage.getItems();
+// console.table(items); // [ "Нанитоиды", "Пролонгер", "Железные жупи", "Антигравитатор" ]
+
+// storage.addItem('Дроид');
+// console.table(storage.items); // [ "Нанитоиды", "Пролонгер", "Железные жупи", "Антигравитатор", "Дроид" ]
+
+// storage.removeItem('Пролонгер');
+// console.table(storage.items); // [ "Нанитоиды", "Железные жупи", "Антигравитатор", "Дроид" ]
+//---------------------------------------------------
+
+// ============================ задачачки ==================
+// Напиши класс StringBuilder. На вход он получает один параметр - строку, которую записывает в свойство _value.
+
+// Добавь классу следующий функционал:
+
+// Геттер value - возвращает текущее значение поля _value
+// Метод append(str) - получает парметр str (строку) и добавляет ее в конец _value
+// Метод prepend(str) - получает парметр str (строку) и добавляет ее в начало value
+// Метод pad(str) - получает парметр str (строку) и добавляет ее в начало и в конец _value
+
+// class StringBuilder {
+//   constructor(value) {
+//     this._value = value;
+//   }
+//   get value() {
+//     return this._value;
+//   }
+//   append(str) {
+//     this._value = this._value + str;
+//   }
+//   prepend(str) {
+//     this._value = str + this._value;
+//   }
+//   pad(str) {
+//     this._value = str + this._value + str;
+//   }
+// }
+
+
+// const builder = new StringBuilder('.');
+
+// builder.append('^');
+// console.log(builder.value); // '.^'
+
+// builder.prepend('^');
+// console.log(builder.value); // '^.^'
+
+// builder.pad('=');
+// console.log(builder.value); // '=^.^='
+
+//---------------------------------------------------
+
+// ============================ задачачки ==================
+
+// Напиши класс Car с указанными свойствами и методами.
+// class Car {
+//   static getSpecs(car) {
+//     console.log(
+//       `maxSpeed:${car.maxSpeed},speed:${car.speed},isOn:${car.isOn},distance:${car.distance},price:${car.price}`,
+//     );
+//   }
+//   //maxSpeed: 200, speed: 50, isOn: true, distance: 100, price: 2000
+//   /*
+//    * Добавь статический метод `getSpecs(car)`,
+//    * который принимает объект-машину как параметр и выводит
+//    * в консоль значения свойств maxSpeed, speed, isOn, distance и price.
+//    */
+//   /*
+//    * Конструктор получает объект настроек.
+//    *
+//    * Добавь свойства будущеего экземпляра класса:
+//    *  speed - текущая скорость, изначально 0
+//    *  price - цена автомобиля
+//    *  maxSpeed - максимальная скорость
+//    *  isOn - заведен ли автомобиль, значения true или false. Изначально false
+//    *  distance - общий киллометраж, изначально 0
+//    */
+//   constructor({ maxSpeed, price }) {
+//     this.speed = 0;
+//     this.price = price;
+//     this.maxSpeed = maxSpeed;
+//     this.isOn = false;
+//     this.distance = 0;
+//   }
+//   /*
+//    * Добавь геттер и сеттер для свойства price,
+//    * который будет работать с свойством цены автомобиля.
+//    */
+//   get price() {
+//     return this._price;
+//   }
+//   set price(price) {
+//     this._price = price;
+//   }
+//   /*
+//    * Добавь код для того чтобы завести автомобиль
+//    * Записывает в свойство isOn значение true
+//    */
+//   turnOn() {
+//     this.isOn = true;
+//   }
+//   /*
+//    * Добавь код для того чтобы заглушить автомобиль
+//    * Записывает в свойство isOn значение false,
+//    * и сбрасывает текущую скорость в 0
+//    */
+//   turnOff() {
+//     this.speed = 0;
+//     this.isOn = false;
+//   }
+//   /*
+//    * Добавялет к свойству speed полученное значение,
+//    * при условии что результирующая скорость
+//    * не больше чем значение свойства maxSpeed
+//    */
+//   accelerate(value) {
+//     if (this.speed + value <= this.maxSpeed) {
+//       this.speed = this.speed + value;
+//     }
+//   }
+//   /*
+//    * Отнимает от свойства speed полученное значение,
+//    * при условии что результирующая скорость не меньше нуля
+//    */
+//   decelerate(value) {
+//     if (this.speed - value >= 0) {
+//       this.speed = this.speed - value;
+//     }
+//   }
+//   /*
+//    * Добавляет в поле distance киллометраж (hours * speed),
+//    * но только в том случае если машина заведена!
+//    */
+//   drive(hours) {
+//     if (this.isOn) {
+//       this.distance = this.distance + hours * this.speed;
+//     }
+//   }
+// }
+// const mustang = new Car({ maxSpeed: 200, price: 2000 });
+
+// mustang.turnOn();
+// mustang.accelerate(50);
+// mustang.drive(2);
+
+// Car.getSpecs(mustang);
+// // maxSpeed: 200, speed: 50, isOn: true, distance: 100, price: 2000
+
+// mustang.decelerate(20);
+// mustang.drive(1);
+// mustang.turnOff();
+
+// Car.getSpecs(mustang);
+// // maxSpeed: 200, speed: 0, isOn: false, distance: 130, price: 2000
+
+// console.log(mustang.price); // 2000
+// mustang.price = 4000;
+// console.log(mustang.price); // 4000
+//---------------------------------------------------
+
+// ============================ задачачки ==================
+// Исправь ошибки которые будут в консоли, чтобы скрипт заработал.
+
+// const inventory = {
+//   items: ['Knife', 'Gas mask'],
+//   add(itemName) {
+//     console.log(`Adding ${itemName} to inventory`);
+
+//     this.items.push(itemName);
+//   },
+//   remove(itemName) {
+//     console.log(`Removing ${itemName} from inventory`);
+
+//     this.items = this.items.filter(item => item !== itemName);
+//   },
+// };
+
+// const invokeInventoryAction = function(itemName, action) {
+//   console.log(`Invoking action on ${itemName}`);
+//   action(itemName);
+//   // action.call(inventory, itemName);
+// };
+
+// invokeInventoryAction('Medkit', inventory.add.bind(inventory));
+// // Invoking action on Medkit
+// // Adding Medkit to inventory
+
+// console.log(inventory.items); // ['Knife', 'Gas mask', 'Medkit']
+
+// invokeInventoryAction('Gas mask', inventory.remove.bind(inventory));
+// // Invoking action on Gas mask
+// // Removing Gas mask from inventory
+
+// console.log(inventory.items); // ['Knife', 'Medkit']
+
+
+// const inventory = {
+//   items: [‘Knife’, ‘Gas mask’],
+//   add(itemName) {
+//     console.log(`Adding ${itemName} to inventory`);
+//     this.items.push(itemName);
+//   },
+//   remove(itemName) {
+//     console.log(`Removing ${itemName} from inventory`);
+//     this.items = this.items.filter(item => item !== itemName);
+//   },
+// };
+// const invokeInventoryAction = function (itemName, action) {
+//   console.log(`Invoking action on ${itemName}`);
+//   action(itemName);
+//   // action.call(inventory, itemName);
+// };
+// invokeInventoryAction(‘Medkit’, inventory.add.bind(inventory));
+// // Invoking action on Medkit
+// // Adding Medkit to inventory
+// console.log(inventory.items); // [‘Knife’, ‘Gas mask’, ‘Medkit’]
+// invokeInventoryAction(‘Gas mask’, inventory.remove.bind(inventory));
+// // Invoking action on Gas mask
+// // Removing Gas mask from inventory
+//---------------------------------------------------
+
+// const dirtyMultiply = (array, value) => {
+//   for (let i = 0; i < array.length; i += 1) {
+//     array[i] = array[i] * value;
+//   }
+// };
+
+// const numbers = [1, 2, 3, 4, 5];
+
+// dirtyMultiply(numbers, 2);
+
+// // Произошла мутация исходных данных
+// console.log(numbers); // [2, 4, 6, 8, 10]
+
+const users = [
+  { id: '000', name: 'Mango', isActive: true },
+  { id: '001', name: 'Poly', isActive: false },
+  { id: '002', name: 'Ajax', isActive: true },
+  { id: '003', name: 'Chelsey', isActive: false },
+];
+
+// Для каждого элемента коллекции (user) проверим поле id.
+// Если оно совпадает с искомым идентификатором, то find прекратит
+// выполнение и вернет текущий элемент (user) как результат выполнения
+const user = users.find(user => user.id === '002');
+console.log(user);
+
+// Создадим функцию которая будет возвращать нам пользователя по id
+const getUserById = (arr, id) => arr.find(x => x.id === id);
+
+console.log(getUserById(users, '001'));
+console.log(getUserById(users, '003'));
