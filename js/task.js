@@ -3043,7 +3043,30 @@ const users = [
 // Вызов функции с указанным массивом пользователей возвращает массив ['Sharron Pace', 'Briana Decker', 'Marilyn Mcintosh', 'Padilla Garrison', 'Naomi Buckner', 'Goldie Gentry', 'Aisha Tran', 'Jordan Sampson', 'Eddie Strong', 'Jacklyn Lucas', 'Linda Chapman'].
 // Вызов функции со случайными, но валидными аргументами, возвращает правильное значение.
 
-const getFriends = (users) => {
-   return users.flatMap((user) => user.friends)
-};
-console.log(getFriends(users));
+// const getFriends = (users) => {
+//   const allfriends = users.flatMap((user) => user.friends);
+//   console.log(allfriends)
+//   return allfriends.filter((allfriend, index) => allfriends.indexOf(allfriend) === index)
+// };
+// console.log(getFriends(users));
+
+// const allGenres = books.flatMap((book) => book.genres);
+// console.log(allGenres)
+// const uniqueGenres = allGenres.filter((allGenre,index) => allGenres.indexOf(allGenre) === index);
+// console.log(uniqueGenres);
+
+//---------------------------------------------------
+// ============================ module 6 задача 22/44==================
+// Дополни функцию getActiveUsers(users) так, чтобы она возвращала массив активных пользователей, значение свойства isActive которых true.
+
+// Тесты
+// Объявлена переменная getActiveUsers. Переменной getActiveUsers присвоена стрелочная функция с параметром users.
+// Для перебора параметра users используется метод filter().
+// Вызов функции с указанным массивом пользователей возвращает массив объектов пользователей с именами Sharlene Bush, Elma Head, Carey Barr и Sheree Anthony.
+// Вызов функции со случайными, но валидными аргументами, возвращает правильное значение.
+
+// const getActiveUsers = (users) => {
+//   return users.filter((user) => !user.isActive)
+   
+// };
+// console.log(getActiveUsers(users))
