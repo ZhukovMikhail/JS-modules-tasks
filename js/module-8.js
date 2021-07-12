@@ -30,20 +30,20 @@ const child = document.querySelector('#child');
 const innerChild = document.querySelector('#inner-child');
 
 const parentClickHandler = () => {
-  alert(
+  console.log(
     'При клике в INNER-CHILD, этого alert не будет, до PARENT event не дойдет!',
   );
 };
 
 const childClickHandler = () => {
-  alert(
+  console.log(
     'При клике в INNER-CHILD, этого alert не будет, до CHILD event не дойдет!',
   );
 };
 
 const innerChildClickHandler = event => {
   event.stopPropagation();
-  alert('INNER-CHILD click handler!');
+  console.log('INNER-CHILD click handler!');
   // event.stopImmediatePropagation();
   // Прекращает обработку события даже на текущем элементе
 };
